@@ -21,3 +21,5 @@ aws_secret_access_key = Q/tv+..BASE64...8xmWLbF2s
 
 # modules
 * (local) vpc
+* (local) keystonejs
+* (local) nodebeats
