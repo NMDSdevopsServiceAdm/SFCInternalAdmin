@@ -16,7 +16,6 @@ Example `~/.aws/credentials` file (actual key and secret obfuscated of course):
 [dev-terraform]
 aws_access_key_id = AKIA...26SBKIRQ
 aws_secret_access_key = Q/tv+..BASE64...8xmWLbF2s
-
 ```
 
 # modules
