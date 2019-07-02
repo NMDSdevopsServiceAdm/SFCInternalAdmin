@@ -26,14 +26,14 @@ resource "aws_security_group" "sg_nodebeats" {
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
-        from_port = 80
-        to_port = 80
+        from_port = 4200
+        to_port = 4200
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
-        from_port = 443
-        to_port = 443
+        from_port = 4500
+        to_port = 4500
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
@@ -56,7 +56,7 @@ resource "aws_security_group" "sg_nodebeats" {
 
 resource "aws_instance" "nodebeats" {
   ami           = "${data.aws_ami.nodebeats_ami.id}"
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
   source_dest_check = true
   count = "1"
   subnet_id = "${var.subnet}"
