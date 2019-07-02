@@ -1,2 +1,2 @@
 # SFCInternalAdmin
-Internal Admin CRM codebase
+Internal Admin application deployment scripts - terraform (AWS)
