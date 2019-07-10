@@ -16,33 +16,6 @@ module "my-vpc" {
   private_key_location = "${file("${path.module}/priv.key")}"
 }
 
-module "keystonejs-demo" {
-  region = "${var.region}"
-  key_pair_name = "strapi"
-  vpc_name = "internalAdmin"
-  source = "../../modules/keystonejs"
-  env = "${var.env}"
-  private_key_location = "${file("${path.module}/priv.key")}"
-  aws_vpc = "${module.my-vpc.aws_vpc}"
-  aws_igw = "${module.my-vpc.aws_igw}"
-  aws_ec2_basic_profile = "${module.my-vpc.aws_ec2_basic_profile}"
-  subnet = "${element(module.my-vpc.public_subnets.*.id, 0)}"
-}
-
-
-module "nodebeats-demo" {
-  region = "${var.region}"
-  key_pair_name = "strapi"
-  vpc_name = "internalAdmin"
-  source = "../../modules/nodebeats"
-  env = "${var.env}"
-  private_key_location = "${file("${path.module}/priv.key")}"
-  aws_vpc = "${module.my-vpc.aws_vpc}"
-  aws_igw = "${module.my-vpc.aws_igw}"
-  aws_ec2_basic_profile = "${module.my-vpc.aws_ec2_basic_profile}"
-  subnet = "${element(module.my-vpc.public_subnets.*.id, 0)}"
-}
-
 module "strapi-demo" {
   region = "${var.region}"
   key_pair_name = "strapi"
