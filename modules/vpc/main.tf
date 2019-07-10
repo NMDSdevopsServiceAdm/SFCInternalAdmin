@@ -158,28 +158,29 @@ resource "aws_security_group" "bastion-ssh-proxy" {
     }
 }
 
-resource "aws_instance" "bastions" {
-  ami           = "${data.aws_ami.bastion_ami.id}"
-  instance_type = "t2.micro"
-  source_dest_check = true
-  count = "${var.num_of_avs}"
-  subnet_id = "${element(aws_subnet.public_subnets.*.id, count.index)}"
-  iam_instance_profile = "${aws_iam_instance_profile.ec2_basic_profile.name}"
-  vpc_security_group_ids = [
-    "${aws_security_group.bastion-ssh-proxy.id}"
-  ]
-  key_name = "${var.key_pair_name}"
-  depends_on = ["aws_internet_gateway.igw", "aws_security_group.bastion-ssh-proxy"]
+# disabling the creation of a bastion as part of the VPC creation
+# resource "aws_instance" "bastions" {
+#   ami           = "${data.aws_ami.bastion_ami.id}"
+#   instance_type = "t2.micro"
+#   source_dest_check = true
+#   count = "${var.num_of_avs}"
+#   subnet_id = "${element(aws_subnet.public_subnets.*.id, count.index)}"
+#   iam_instance_profile = "${aws_iam_instance_profile.ec2_basic_profile.name}"
+#   vpc_security_group_ids = [
+#     "${aws_security_group.bastion-ssh-proxy.id}"
+#   ]
+#   key_name = "${var.key_pair_name}"
+#   depends_on = ["aws_internet_gateway.igw", "aws_security_group.bastion-ssh-proxy"]
   
-  tags = {
-    Name = "${var.env}_${var.vpc_name}_bastion_${count.index}"
-    Company = "SfC"
-    Application = "InternalAdmin"
-    Role = "bastion"
-  }
+#   tags = {
+#     Name = "${var.env}_${var.vpc_name}_bastion_${count.index}"
+#     Company = "SfC"
+#     Application = "InternalAdmin"
+#     Role = "bastion"
+#   }
 
-  connection {
-    user = "ec2-user"
-    private_key = "${var.private_key_location}"
-  }
-}
+#   connection {
+#     user = "ec2-user"
+#     private_key = "${var.private_key_location}"
+#   }
+# }
