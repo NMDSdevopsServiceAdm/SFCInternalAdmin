@@ -6,6 +6,9 @@ variable "key_pair_name" {}
 variable "private_key_location" {}
 variable "subnet" {}
 
+variable "instance_size" {}
+
+
 // inherited from vpc module
 variable "aws_vpc" {}
 variable "aws_ec2_basic_profile" {}

@@ -27,4 +27,5 @@ module "strapi-demo" {
   aws_igw = "${module.my-vpc.aws_igw}"
   aws_ec2_basic_profile = "${module.my-vpc.aws_ec2_basic_profile}"
   subnet = "${element(module.my-vpc.public_subnets.*.id, 0)}"
+  instance_size = "t2.small"
 }
